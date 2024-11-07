@@ -1,4 +1,5 @@
 import { IsString, IsEmail, IsOptional, IsArray } from 'class-validator';
+import { Types } from 'mongoose';
 
 export class CreateUserDto {
 
@@ -14,11 +15,11 @@ export class CreateUserDto {
 
   @IsArray()
   @IsOptional() 
-  readonly friends?: string[];
+  readonly friends?: Types.ObjectId[];
 
   @IsArray()
   @IsOptional() 
-  readonly channels?: string[];
+  readonly channels?: Types.ObjectId[];
 
   readonly score: number;
 }

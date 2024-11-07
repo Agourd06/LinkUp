@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { UpdateMessageDto } from './dto/update-message.dto';
+import { Message } from './messages.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class MessagesService {
-  create(createMessageDto: CreateMessageDto) {
-    return 'This action adds a new message';
+  constructor(@InjectModel(Message.name) private messageModel: Model<Message>) {}
+
+  async createUser(data: CreateMessageDto): Promise<Message> {
+    const channel = new this.messageModel(data);
+    return channel.save();
   }
 
-  findAll() {
-    return `This action returns all messages`;
+  async findAll(): Promise<Message[]> {
+    return this.messageModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} message`;
+  async findOne(id: string): Promise<Message> {
+    return this.messageModel.findById(id).exec();
   }
 
-  update(id: number, updateMessageDto: UpdateMessageDto) {
-    return `This action updates a #${id} message`;
+  async updateUser(id: string, data: UpdateMessageDto): Promise<Message> {
+    return this.messageModel.findByIdAndUpdate(id, data, { new: true }).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} message`;
+  async deleteUser(id: string): Promise<Message> {
+    return this.messageModel.findByIdAndDelete(id).exec();
   }
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { ChannelsService } from './channels.service';
 import { CreateChannelDto } from './dto/create-channel.dto';
 import { UpdateChannelDto } from './dto/update-channel.dto';
@@ -9,7 +9,7 @@ export class ChannelsController {
 
   @Post()
   create(@Body() createChannelDto: CreateChannelDto) {
-    return this.channelsService.create(createChannelDto);
+    return this.channelsService.createChannel(createChannelDto);
   }
 
   @Get()
@@ -19,16 +19,16 @@ export class ChannelsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.channelsService.findOne(+id);
+    return this.channelsService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateChannelDto: UpdateChannelDto) {
-    return this.channelsService.update(+id, updateChannelDto);
+    return this.channelsService.updateChannel(id, updateChannelDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.channelsService.remove(+id);
+    return this.channelsService.deleteChannel(id);
   }
 }

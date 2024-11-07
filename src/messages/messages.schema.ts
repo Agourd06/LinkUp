@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document, Types } from "mongoose";
 
 @Schema({timestamps : true})
 export class Message extends Document {
@@ -6,12 +7,12 @@ export class Message extends Document {
     @Prop({required: true})
     content : String;
 
-    @Prop({ type: [{ type: String, ref: 'User' }], required: false })
-    sender : String;
+    @Prop({ type: [{ type: Types.ObjectId, ref: 'User' }], required: false })
+    sender : Types.ObjectId;
 
 
-    @Prop({ type: [{ type: String, ref: 'Channel' }], required: false })
-    channel : String;
+    @Prop({ type: [{ type: Types.ObjectId, ref: 'Channel' }], required: false })
+    channel : Types.ObjectId;
 
     
 }

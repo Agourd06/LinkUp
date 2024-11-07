@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { MessagesService } from './messages.service';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { UpdateMessageDto } from './dto/update-message.dto';
@@ -9,7 +9,7 @@ export class MessagesController {
 
   @Post()
   create(@Body() createMessageDto: CreateMessageDto) {
-    return this.messagesService.create(createMessageDto);
+    return this.messagesService.createUser(createMessageDto);
   }
 
   @Get()
@@ -19,16 +19,16 @@ export class MessagesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.messagesService.findOne(+id);
+    return this.messagesService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateMessageDto: UpdateMessageDto) {
-    return this.messagesService.update(+id, updateMessageDto);
+    return this.messagesService.updateUser(id, updateMessageDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.messagesService.remove(+id);
+    return this.messagesService.deleteUser(id);
   }
 }

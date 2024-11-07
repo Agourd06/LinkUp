@@ -1,4 +1,23 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateChannelDto } from './create-channel.dto';
+import { IsString, IsOptional, IsArray, IsEnum, IsNumber } from 'class-validator';
+import { Types } from 'mongoose';
+import { ChannelType } from 'src/enums/channel.enum';
 
-export class UpdateChannelDto extends PartialType(CreateChannelDto) {}
+export class UpdateChannelDto {
+
+    @IsOptional()
+    @IsString()
+    name?: string;
+
+    @IsOptional()
+    @IsEnum(ChannelType)
+    type?: ChannelType;
+
+    @IsOptional()
+    @IsArray()
+    members?: Types.ObjectId[];
+
+    @IsOptional()
+    @IsNumber()
+    score?: number;
+
+}
