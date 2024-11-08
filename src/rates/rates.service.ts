@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRateDto } from './dto/create-rate.dto';
 import { UpdateRateDto } from './dto/update-rate.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Rate } from './rates.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class RatesService {
-  create(createRateDto: CreateRateDto) {
-    return 'This action adds a new rate';
+
+  constructor(@InjectModel(Rate.name) private rateModel : Model<Rate>){}
+  async createRate(data: CreateRateDto): Promise<Rate> {
+    const rate = new this.rateModel(data)
+    return rate.save();
   }
 
-  findAll() {
-    return `This action returns all rates`;
+  async findAll(): Promise<Rate[]> {
+    return this.rateModel.find().exec();
+
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} rate`;
+  findOne(id: string) : Promise<Rate> {
+    return this.rateModel.findById(id).exec();
   }
 
-  update(id: number, updateRateDto: UpdateRateDto) {
-    return `This action updates a #${id} rate`;
+  updateRate(id: string, data: UpdateRateDto) : Promise<Rate> {
+    return this.rateModel.findByIdAndUpdate(id, data, { new: true }).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} rate`;
+  deleteRate(id: string) {
+    return this.rateModel.findByIdAndDelete(id).exec();
   }
 }

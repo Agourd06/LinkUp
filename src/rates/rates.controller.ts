@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { RatesService } from './rates.service';
 import { CreateRateDto } from './dto/create-rate.dto';
 import { UpdateRateDto } from './dto/update-rate.dto';
@@ -9,7 +9,7 @@ export class RatesController {
 
   @Post()
   create(@Body() createRateDto: CreateRateDto) {
-    return this.ratesService.create(createRateDto);
+    return this.ratesService.createRate(createRateDto);
   }
 
   @Get()
@@ -19,16 +19,16 @@ export class RatesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.ratesService.findOne(+id);
+    return this.ratesService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateRateDto: UpdateRateDto) {
-    return this.ratesService.update(+id, updateRateDto);
+    return this.ratesService.updateRate(id, updateRateDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.ratesService.remove(+id);
+    return this.ratesService.deleteRate(id);
   }
 }

@@ -8,6 +8,9 @@ import { ConfigModule } from '@nestjs/config';
 import { MessagesModule } from './messages/messages.module';
 import { ChannelsModule } from './channels/channels.module';
 import { RatesModule } from './rates/rates.module';
+import { FriendsRequestsModule } from './friends-requests/friends-requests.module';
+import { NotificationsModule } from './notifications/notifications.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 
 
@@ -18,7 +21,9 @@ import { RatesModule } from './rates/rates.module';
     UsersModule,
     MessagesModule,
     ChannelsModule,
-    RatesModule],
+    RatesModule,
+    FriendsRequestsModule,
+    NotificationsModule],
   controllers: [AppController],
   providers: [AppService],
 })

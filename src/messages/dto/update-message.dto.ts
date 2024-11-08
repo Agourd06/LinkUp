@@ -1,4 +1,4 @@
-import { IsString, IsOptional } from "class-validator";
+import { IsString, IsOptional, IsNotEmpty } from "class-validator";
 import { Types } from "mongoose";
 
 export class UpdateMessageDto {
@@ -7,12 +7,12 @@ export class UpdateMessageDto {
     @IsString()
     content?: string;
 
-    @IsOptional()
+    @IsNotEmpty()  
     @IsString()
-    channel?: Types.ObjectId;
+   readonly channel: Types.ObjectId;
 
-    @IsOptional()
+    @IsNotEmpty()  
     @IsString()
-    sender?: Types.ObjectId;
+   readonly sender: Types.ObjectId;
 
 }

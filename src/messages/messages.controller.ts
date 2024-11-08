@@ -9,7 +9,7 @@ export class MessagesController {
 
   @Post()
   create(@Body() createMessageDto: CreateMessageDto) {
-    return this.messagesService.createUser(createMessageDto);
+    return this.messagesService.createMessage(createMessageDto);
   }
 
   @Get()
@@ -24,11 +24,11 @@ export class MessagesController {
 
   @Put(':id')
   update(@Param('id') id: string, @Body() updateMessageDto: UpdateMessageDto) {
-    return this.messagesService.updateUser(id, updateMessageDto);
+    return this.messagesService.updateMessage(id, updateMessageDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.messagesService.deleteUser(id);
+    return this.messagesService.deleteMessage(id);
   }
 }

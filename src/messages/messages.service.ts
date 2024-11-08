@@ -9,7 +9,7 @@ import { Model } from 'mongoose';
 export class MessagesService {
   constructor(@InjectModel(Message.name) private messageModel: Model<Message>) {}
 
-  async createUser(data: CreateMessageDto): Promise<Message> {
+  async createMessage(data: CreateMessageDto): Promise<Message> {
     const channel = new this.messageModel(data);
     return channel.save();
   }
@@ -22,11 +22,11 @@ export class MessagesService {
     return this.messageModel.findById(id).exec();
   }
 
-  async updateUser(id: string, data: UpdateMessageDto): Promise<Message> {
+  async updateMessage(id: string, data: UpdateMessageDto): Promise<Message> {
     return this.messageModel.findByIdAndUpdate(id, data, { new: true }).exec();
   }
 
-  async deleteUser(id: string): Promise<Message> {
+  async deleteMessage(id: string): Promise<Message> {
     return this.messageModel.findByIdAndDelete(id).exec();
   }
 }
