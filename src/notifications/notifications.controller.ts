@@ -19,7 +19,7 @@ export class NotificationController {
 
   @Post()
   async createNotification(
-    @Body('userId') userId: string,
+    @Body('recevier') userId: string,
     @Body('channelId') channelId: string,
     @Body('messageId') messageId: string,
   ): Promise<Notification> {

@@ -13,4 +13,8 @@ export class CreateMessageDto {
   @IsString()
   @IsNotEmpty()
   readonly sender: Types.ObjectId;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly recipient: Types.ObjectId;
 }

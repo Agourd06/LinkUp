@@ -16,8 +16,5 @@ export class UpdateChannelDto {
     @IsArray()
     members?: Types.ObjectId[];
 
-    @IsOptional()
-    @IsNumber()
-    score?: number;
 
 }

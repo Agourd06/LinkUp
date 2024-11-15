@@ -10,7 +10,6 @@ import { ChannelsModule } from './channels/channels.module';
 import { RatesModule } from './rates/rates.module';
 import { FriendsRequestsModule } from './friends-requests/friends-requests.module';
 import { NotificationsModule } from './notifications/notifications.module';
-import { NotificationsModule } from './notifications/notifications.module';
 
 
 
@@ -27,6 +26,8 @@ import { NotificationsModule } from './notifications/notifications.module';
   controllers: [AppController],
   providers: [AppService],
 })
+
+
 
 
 

@@ -21,8 +21,9 @@ export class UsersService {
   }
 
   async findOne(id: string): Promise<UserModel> {
-    return this.userModel.findById(id).exec();
+    return this.userModel.findById(id).populate('User').populate('Channel').exec();
   }
+  
 
   async updateUser(id: string, data: UpdateUserDto): Promise<UserModel> {
     return this.userModel.findByIdAndUpdate(id, data, { new: true }).exec();

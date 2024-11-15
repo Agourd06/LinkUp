@@ -22,6 +22,6 @@ export class CreateUserDto {
   @IsArray()
   @IsOptional() 
   readonly channels?: Types.ObjectId[];
-
+  
   readonly score: number;
 }
