@@ -17,8 +17,6 @@ export class CreateChannelDto {
     @IsOptional() 
     readonly members?: Types.ObjectId[];
 
-    @IsNotEmpty()  
-    @IsNumber()
-    readonly score: number;
+   
     
 }

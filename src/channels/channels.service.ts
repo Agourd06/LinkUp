@@ -11,6 +11,7 @@ export class ChannelsService {
   constructor(@InjectModel(Channel.name) private channelModel: Model<ChannelsModule>) {}
 
   async createChannel(data: CreateChannelDto ): Promise<ChannelsModule> {
+    
     const channel = new this.channelModel(data);
     return channel.save();
   }

@@ -14,5 +14,9 @@ export class UpdateMessageDto {
     @IsNotEmpty()  
     @IsString()
    readonly sender: Types.ObjectId;
+   
+    @IsNotEmpty()  
+    @IsString()
+   readonly recipient: Types.ObjectId;
 
 }
